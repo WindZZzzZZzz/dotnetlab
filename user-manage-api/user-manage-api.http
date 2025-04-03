@@ -1,0 +1,61 @@
+# Login Request
+POST http://localhost:5097/login
+Content-Type: application/x-www-form-urlencoded
+
+username=john.doe&password=strongpassword123
+
+###
+
+# Access Protected Resource (After Login, with Cookie)
+GET http://localhost:5097/protected
+Cookie: MyAppCookie=<cookie_value_here>  # Replace with the actual cookie value from login
+
+###
+
+# Access a User by ID (Authenticated Request)
+GET http://localhost:5097/api/user/{id}
+Cookie: MyAppCookie=<cookie_value_here>  # Replace with the actual cookie value from login
+
+###
+
+# Get All Users (Authenticated Request)
+GET http://localhost:5097/api/user/all
+Cookie: MyAppCookie=<cookie_value_here>  # Replace with the actual cookie value from login
+
+###
+
+# Create New User (Authenticated Request)
+POST http://localhost:5097/api/user/create
+Content-Type: application/json
+Cookie: MyAppCookie=<cookie_value_here>  # Replace with the actual cookie value from login
+
+{
+  "username": "new.user",
+  "email": "new.user@example.com",
+  "password": "newuserpassword"
+}
+
+###
+
+# Update Existing User (Authenticated Request)
+PUT http://localhost:5097/api/user/update/{id}
+Content-Type: application/json
+Cookie: MyAppCookie=<cookie_value_here>  # Replace with the actual cookie value from login
+
+{
+  "id": 1,
+  "username": "updated.user",
+  "email": "updated.user@example.com",
+  "password": "updatedpassword"
+}
+
+###
+
+# Delete User (Authenticated Request)
+DELETE http://localhost:5097/api/user/delete/{id}
+Cookie: MyAppCookie=<cookie_value_here>  # Replace with the actual cookie value from login
+
+###
+
+# Logout Request (Clear Authentication Cookie)
+POST http://localhost:5097/logout
